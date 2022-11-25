@@ -32,3 +32,11 @@ printNumbersWithForLoop();
 printNumbersWithWhileLoop();
 printNumbersWithForEach();
 ```
+
+## Objects
+
+* [ ] Create an object ```days = { 'monday' : 'Monday', 'tuesday: ... }```
+* [ ] Iterate over keys using `Object.keys`
+* [ ] Iterate over values using `Object.values`
+* [ ] Get the number of keys using `Object.keys(obj).length`
+* [ ] Replace key's value using `obj[key] = newValue`
