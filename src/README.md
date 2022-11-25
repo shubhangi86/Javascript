@@ -1,4 +1,4 @@
 # Getting started
 
 * [ ] Install node using nvm
-* [ ] Run `node main.js`
+* [ ] Run the node script - `node main.js`
