@@ -1,3 +1,3 @@
 # Features
 
-* [ ] [NodeJS Script](./features/node-script.md)
+* [ ] [NodeJS Script](./node-script.md)
