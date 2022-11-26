@@ -16,10 +16,8 @@ function printNumbersWithWhileLoop(number) {
 
 //Calls a function on each element
 function printNumbersWithForEachLoop(arr) {
-    arr.forEach(() => {
-        element = arr[0];
-        console.log(element)
-        arr[0]++;
+    arr.forEach((num) => {
+        console.log(num);
     });
 }
 
