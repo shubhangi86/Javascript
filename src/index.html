@@ -1,0 +1,27 @@
+<form>
+    <label for="fname" id="idFoodName">Food name:</label>
+    <input type="text" id="idfname" name="Food name"></input><br><br>
+    <label for="foodDes", id="idFoodDes">Food Description:</label>
+    <input type="text" id="foodDes" name="food Description"></input><br><br>
+    <label for="calcount", id="idCalcount">Calories per gram:</label>
+    <input type="text" id="calcount" name="Calorie Count"></input><br><br>
+    <label for="gmperserve", id="idgmperserve">(Average) Grams per serving:</label>
+    <input type="text" id="gmperserve" name="Grams Per Serve"></input><br><br>
+    <label for="avgprice", id="idavgprice">(Average) Price:</label>
+    <input type="text" id="avgprice" name="Avg Price"></input><br><br>
+    <label for="imglink", id="idPicLink">Picture link:</label>
+    <input type="text" id="imglink" name="Img Link"></input><br><br>
+    <input type="submit" value="Submit" id="submitButton">
+</form>
+
+<script>
+    function handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const values = Object.fromEntries(data.entries());
+    console.log({ values });
+}
+
+const form = document.querySelector('form');
+form.addEventListener('submit', handleSubmit);
+</script>
