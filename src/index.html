@@ -1,31 +1,70 @@
 <!-- <form> -->
-    <label for="fname" id="idFoodName">Food name:</label>
-    <input type="text" id="idfname" name="Food name"></input><br><br>
-    <label for="foodDes", id="idFoodDes">Food Description:</label>
-    <input type="text" id="foodDes" name="food Description"></input><br><br>
-    <label for="calcount", id="idCalcount">Calories per gram:</label>
-    <input type="text" id="calcount" name="Calorie Count"></input><br><br>
-    <label for="gmperserve", id="idgmperserve">(Average) Grams per serving:</label>
-    <input type="text" id="gmperserve" name="Grams Per Serve"></input><br><br>
-    <label for="avgprice", id="idavgprice">(Average) Price:</label>
-    <input type="text" id="avgprice" name="Avg Price"></input><br><br>
-    <label for="imglink", id="idPicLink">Picture link:</label>
-    <input type="text" id="imglink" name="Img Link"></input><br><br>
-    <input type="submit" value="Submit" id="submitButton">
+<label for="fname" id="idFoodName">Food name:</label>
+<input type="text" id="idfname" name="Food name"></input><br><br>
+<label for="foodDes" , id="idFoodDes">Food Description:</label>
+<input type="text" id="foodDes" name="food Description"></input><br><br>
+<label for="calcount" , id="idCalcount">Calories per gram:</label>
+<input type="text" id="calcount" name="Calorie Count"></input><br><br>
+<label for="gmperserve" , id="idgmperserve">(Average) Grams per serving:</label>
+<input type="text" id="gmperserve" name="Grams Per Serve"></input><br><br>
+<label for="avgprice" , id="idavgprice">(Average) Price:</label>
+<input type="text" id="avgprice" name="Avg Price"></input><br><br>
+<label for="imglink" , id="idPicLink">Picture link:</label>
+<input type="text" id="imglink" name="Img Link"></input><br><br>
+<input type="submit" value="Submit" id="submitButton">
 <!-- </form> -->
 
 <script>
-    let submitButton= document.getElementById('submitButton');
-    submitButton.addEventListener("click", function(){
-        var data= {
-            [document.getElementById('idFoodName').textContent]: document.getElementById('idfname').value,
-            [document.getElementById('idFoodDes').textContent]: document.getElementById('foodDes').value,
-            [document.getElementById('idCalcount').textContent]: document.getElementById('calcount').value,
-            [document.getElementById('idgmperserve').textContent]: document.getElementById('gmperserve').value,
-            [document.getElementById('idavgprice').textContent]: document.getElementById('avgprice').value,
-            [document.getElementById('idPicLink').textContent]: document.getElementById('imglink').value,
-        }
-        console.log(JSON.stringify(data))
-    })
+    // Handle values from all the input elements when submit button is clicked
+    function handleSubmit() {
 
+        let submitButton = document.getElementById('submitButton');
+        submitButton.addEventListener("click", function () {
+            const elements = document.querySelectorAll('input');
+            const selects= Array.from(elements);
+            selects.forEach(item=> {
+                console.log(item.name, item.value); 
+            });
+            
+            const data= selects.map(item=> {
+                console.log(item.id, item.value);
+                return [item.id, item.value];
+            });
+            console.log(data)
+            
+
+            // extract the values
+            // var data = {
+            //     [document.getElementById('idFoodName').textContent]: document.getElementById('idfname').value,
+            //     [document.getElementById('idFoodDes').textContent]: document.getElementById('foodDes').value,
+            //     [document.getElementById('idCalcount').textContent]: document.getElementById('calcount').value,
+            //     [document.getElementById('idgmperserve').textContent]: document.getElementById('gmperserve').value,
+            //     [document.getElementById('idavgprice').textContent]: document.getElementById('avgprice').value,
+            //     [document.getElementById('idPicLink').textContent]: document.getElementById('imglink').value,
+            // }
+            // console.log(data)
+            // // log the values
+            saveFoodDetailsLocalStorage(data);
+        })
+    }
+
+    function saveFoodDetailsLocalStorage(items) {
+        // const selects = document.querySelectorAll('input');
+        // const selectValues = [...selects].map(input => input.value);
+        // const savedObj = {selectValues};
+        // localStorage.savedFormValues = JSON.stringify(savedObj);
+        localStorage.setItem('data', JSON.stringify(items))
+    }
+
+    function prefillFoodDetails(){
+        
+        const selects = document.querySelectorAll('input');
+        const selectValues = JSON.parse(localStorage.getItem("data"));
+        selectValues.forEach(arr=>{
+            document.getElementById(arr[0]).value= arr[1]
+        })
+    }
+
+    handleSubmit();
+    prefillFoodDetails();
 </script>
